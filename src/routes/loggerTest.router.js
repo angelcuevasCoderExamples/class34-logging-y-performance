@@ -14,6 +14,15 @@ router.get('/', (req, res)=>{
     res.send({status:'success', message:'Logger test'})
 })
 
+router.get('/custom', (req, res)=>{
+    ///console.log() --->  req.logger
+    req.logger.fatal('this is a fatal error', new Error('This is an error'));
+
+    
+    res.send({status:'success', message:'custom Logger test'})
+})
+
+
 
 module.exports = {
     loggerTestsRouter: router 

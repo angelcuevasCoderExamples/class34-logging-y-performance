@@ -6,7 +6,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev" : "set NODE_ENV=development& nodemon src/app.js",
     "prod" : "set NODE_ENV=production& nodemon src/app.js",
-    "start": "set NODE_ENV=production& nodemon src/app.js"
+    "start": "set NODE_ENV=production& nodemon src/app.js",
+    "custom": "set NODE_ENV=custom& nodemon src/app.js"
   },
   "keywords": [],
   "author": "",

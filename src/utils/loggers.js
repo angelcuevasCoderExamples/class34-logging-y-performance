@@ -41,6 +41,34 @@ const prodLogger = winston.createLogger({
     ]
 })
 
+
+//** WITH CUSTOM LEVELS */
+
+const customLevelOptions = {
+    levels: {
+        fatal:0,
+        error: 1,
+        warning: 2,
+        info: 3,
+        debug: 4
+    },
+    colors: {
+        fatal: 'red',
+        error: 'yellow',
+        warning: 'yellow',
+        info: 'blue',
+        debug: 'red'  
+    }
+}
+
+const customLevelsLogger = winston.createLogger({
+    levels: customLevelOptions.levels, 
+    transports:[
+        new winston.transports.Console({level: 'debug', format: winston.format.combine(winston.format.colorize({colors: customLevelOptions.colors}), winston.format.simple()) }),
+        new winston.transports.File({level:'debug', filename:'./customErrors.log'})
+    ]
+})
+
 //** TEST */
 // logger.error('this is an unhandled error', new Error('This is an error'));
 // logger.warn('this is a warning');
@@ -52,5 +80,6 @@ const prodLogger = winston.createLogger({
 module.exports = {
     logger,
     devLogger,
-    prodLogger
+    prodLogger,
+    customLevelsLogger
 }; 
