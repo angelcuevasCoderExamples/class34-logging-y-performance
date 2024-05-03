@@ -28,6 +28,19 @@ const logger = winston.createLogger({
     ]
 })
 
+const devLogger = winston.createLogger({
+    transports:[
+        new winston.transports.Console({level:'verbose', format: winston.format.combine(winston.format.timestamp(), winston.format.cli() ) })
+    ]
+})
+
+const prodLogger = winston.createLogger({
+    transports:[
+        new winston.transports.Console({level: 'http', format: winston.format.cli()}),
+        new winston.transports.File({level:'warn', filename:'./prodError.log'})
+    ]
+})
+
 //** TEST */
 // logger.error('this is an unhandled error', new Error('This is an error'));
 // logger.warn('this is a warning');
@@ -36,4 +49,8 @@ const logger = winston.createLogger({
 // logger.info('this is a info log');
 
 
-module.exports = logger; 
+module.exports = {
+    logger,
+    devLogger,
+    prodLogger
+}; 
